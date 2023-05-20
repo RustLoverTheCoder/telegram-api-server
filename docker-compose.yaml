@@ -93,6 +93,8 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=123456
     container_name: postgres
+    volumes:
+      - ./data/postgres/data:/var/lib/postgresql/data
     networks:
       - telegram_net
 
