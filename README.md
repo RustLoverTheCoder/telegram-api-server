@@ -1,3 +1,9 @@
+# TelegramApiServer
+
+## Features
+
+* Fast async rust Http Server
+* Websocket endpoints for events and logs
 
 #### Init data
 - init database
