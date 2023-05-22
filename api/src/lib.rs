@@ -1,3 +1,5 @@
+pub mod handler;
+
 use axum::{response::Html, routing::get, Router, Server};
 use core::sea_orm::Database;
 use migration::{Migrator, MigratorTrait};
