@@ -9,6 +9,7 @@ pub mod configuration;
 pub mod contacts;
 pub mod dialogs;
 pub mod drafts;
+pub mod emoji;
 pub mod files;
 pub mod help;
 pub mod links;
