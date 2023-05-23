@@ -1,6 +1,7 @@
 pub mod account;
 pub mod authorization;
 pub mod autodownload;
+pub mod channels;
 pub mod chatinvites;
 pub mod chats;
 pub mod configuration;
@@ -13,6 +14,7 @@ pub mod messages;
 pub mod miscellaneous;
 pub mod notification;
 pub mod nsfw;
+pub mod phone;
 pub mod photos;
 pub mod premium;
 pub mod qrcode;
