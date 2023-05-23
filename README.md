@@ -4,6 +4,7 @@
 
 * Fast async rust Http Server
 * Websocket endpoints for events and logs
+* https://core.telegram.org/methods
 
 #### Init data
 - init database
