@@ -1,3 +1,5 @@
+pub mod passport;
+
 use anyhow::Error;
 
 // auth.bindTempAuthKey

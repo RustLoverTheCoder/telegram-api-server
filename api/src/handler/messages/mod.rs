@@ -1,3 +1,8 @@
+pub mod instant_view_pages;
+pub mod reactions;
+pub mod secret_chats;
+pub mod translation;
+
 use anyhow::Error;
 
 // messages.getSavedGifs
