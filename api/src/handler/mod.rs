@@ -29,3 +29,4 @@ pub mod tos;
 pub mod updates;
 pub mod usernames;
 pub mod users;
+pub mod wallpapers;
