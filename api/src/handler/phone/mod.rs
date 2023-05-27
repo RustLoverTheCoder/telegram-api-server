@@ -1,4 +1,5 @@
 pub mod group_calls_and_live_streaming;
+pub mod user_profile_pictures;
 use anyhow::Error;
 
 // phone.acceptCall

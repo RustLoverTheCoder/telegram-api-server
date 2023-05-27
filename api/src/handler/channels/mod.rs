@@ -1,3 +1,5 @@
+pub mod sponsored;
+pub mod native_anti_spam_system;
 use anyhow::Error;
 
 // channels.createChannel

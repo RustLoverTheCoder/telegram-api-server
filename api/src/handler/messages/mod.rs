@@ -1,5 +1,6 @@
 pub mod instant_view_pages;
 pub mod reactions;
+pub mod scheduled;
 pub mod secret_chats;
 pub mod thread;
 pub mod translation;
@@ -15,7 +16,6 @@ pub async fn messages_get_saved_gifs() -> Result<(), Error> {
 pub async fn messages_save_gif() -> Result<(), Error> {
     Ok(())
 }
-
 
 // messages.deleteHistory
 pub async fn messages_delete_history() -> Result<(), Error> {

@@ -1,3 +1,4 @@
+pub mod attachment_menu;
 use anyhow::Error;
 
 // messages.requestWebView
@@ -60,7 +61,7 @@ pub async fn send_inline_bot_result() -> Result<(), Error> {
     Ok(())
 }
 
-// messages.getBotCallbackAnswer	
+// messages.getBotCallbackAnswer
 pub async fn get_bot_callback_answer() -> Result<(), Error> {
     Ok(())
 }

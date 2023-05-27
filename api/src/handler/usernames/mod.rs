@@ -34,3 +34,29 @@ pub async fn channels_toggle_username() -> Result<(), Error> {
 pub async fn channels_deactivate_all_usernames() -> Result<(), Error> {
     Ok(())
 }
+
+
+// channels.checkUsername
+pub async fn channels_check_username() -> Result<(), Error> {
+    Ok(())
+}
+
+// channels.updateUsername
+pub async fn channels_update_username() -> Result<(), Error> {
+    Ok(())
+}
+
+// account.updateUsername
+pub async fn account_update_username() -> Result<(), Error> {
+    Ok(())
+}
+
+// account.checkUsername
+pub async fn account_check_username() -> Result<(), Error> {
+    Ok(())
+}
+
+// contacts.resolveUsername
+pub async fn contacts_resolve_username() -> Result<(), Error> {
+    Ok(())
+}
