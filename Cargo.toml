@@ -6,7 +6,18 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [workspace]
-members = [".", "api", "core", "entity", "migration", "mtproto", 'crypto']
+members = [
+    ".",
+    "api",
+    "core",
+    "entity",
+    "migration",
+    "mtproto",
+    'crypto',
+    'tl-types',
+    'tl-gen',
+    'tl-parser',
+]
 
 [dependencies]
 api = { path = "api" }
