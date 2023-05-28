@@ -12,3 +12,5 @@ flate2 = "1.0.26"
 getrandom = "0.2.9"
 num-bigint = "0.4.3"
 sha1 = "0.10.5"
+crypto = { path = "../crypto" }
+tl-types = { path = "../tl-types" }
