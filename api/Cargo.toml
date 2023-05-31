@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 core = { path = "../core" }
 tokio = { version = "1.23.0", features = ["full"] }
-axum = "0.6.1"
+axum = { version = "0.6.1", features = ["ws", "http2"] }
 tower = "0.4.13"
 tower-http = { version = "0.3.5", features = ["fs"] }
 tower-cookies = "0.8.0"
