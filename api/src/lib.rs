@@ -9,7 +9,20 @@ use axum::{
 use core::sea_orm::Database;
 use migration::{Migrator, MigratorTrait};
 use std::str::FromStr;
+use std::{
+    collections::HashSet,
+    sync::{Arc, Mutex},
+};
 use std::{env, net::SocketAddr};
+use tokio::sync::broadcast;
+
+// Our shared state
+struct AppState {
+    // We require unique usernames. This tracks which usernames have been taken.
+    user_set: Mutex<HashSet<String>>,
+    // Channel used to send messages to all connected clients.
+    tx: broadcast::Sender<String>,
+}
 
 #[tokio::main]
 async fn start() -> anyhow::Result<()> {
@@ -26,7 +39,12 @@ async fn start() -> anyhow::Result<()> {
         .await
         .expect("Database connection failed");
     Migrator::up(&conn, None).await.unwrap();
-    let app = Router::new().route("/", get(handler));
+
+    let user_set = Mutex::new(HashSet::new());
+    let (tx, _rx) = broadcast::channel(100);
+    let app_state = Arc::new(AppState { user_set, tx });
+
+    let app = Router::new().route("/", get(handler)).with_state(app_state);
 
     let addr = SocketAddr::from_str(&server_url).unwrap();
     Server::bind(&addr).serve(app.into_make_service()).await?;
