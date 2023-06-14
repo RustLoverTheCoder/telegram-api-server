@@ -50,7 +50,7 @@ async fn start() -> anyhow::Result<()> {
 
     let app = Router::new()
         .route("/", get(handler))
-        .route("/websocket", get(websocket_handler))
+        .route("/apiws", get(websocket_handler))
         .with_state(app_state);
 
     let addr = SocketAddr::from_str(&server_url).unwrap();

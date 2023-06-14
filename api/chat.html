@@ -21,7 +21,7 @@
             join_btn.addEventListener("click", function(e) {
                 this.disabled = true;
 
-                const websocket = new WebSocket("ws://localhost:3000/websocket");
+                const websocket = new WebSocket("ws://localhost:3000/apiws");
 
                 websocket.onopen = function() {
                     console.log("connection opened");
