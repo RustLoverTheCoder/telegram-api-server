@@ -12,11 +12,6 @@ members = [
     "core",
     "entity",
     "migration",
-    "mtproto",
-    'crypto',
-    'tl-types',
-    'tl-gen',
-    'tl-parser',
 ]
 
 [dependencies]
