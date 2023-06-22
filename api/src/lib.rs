@@ -10,6 +10,7 @@ use axum::{
     Router, Server,
 };
 use core::sea_orm::Database;
+use futures::{sink::SinkExt, stream::StreamExt};
 use migration::{Migrator, MigratorTrait};
 use std::str::FromStr;
 use std::{
@@ -18,7 +19,6 @@ use std::{
 };
 use std::{env, net::SocketAddr};
 use tokio::sync::broadcast;
-use futures::{sink::SinkExt, stream::StreamExt};
 
 // Our shared state
 struct AppState {
@@ -79,10 +79,14 @@ async fn websocket(stream: WebSocket, state: Arc<AppState>) {
     // Loop until a text message is found.
     while let Some(Ok(message)) = receiver.next().await {
         if let Message::Text(name) = message {
-            // If username that is sent by client is not taken, fill username string.
+            /*
+            If username that is sent by client is not taken, fill username string.
+            */
             check_username(&state, &mut username, &name);
 
-            // If not empty we want to quit the loop else we want to quit function.
+            /*
+            If not empty we want to quit the loop else we want to quit function.
+            */
             if !username.is_empty() {
                 break;
             } else {
@@ -102,7 +106,7 @@ async fn websocket(stream: WebSocket, state: Arc<AppState>) {
 
     // Now send the "joined" message to all subscribers.
     let msg = format!("{} joined.", username);
-    tracing::debug!("{}", msg);
+    tracing::debug!("msg: {}", msg);
     let _ = state.tx.send(msg);
 
     // Spawn the first task that will receive broadcast messages and send text
