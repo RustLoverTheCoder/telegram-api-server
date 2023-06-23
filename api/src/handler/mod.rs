@@ -38,3 +38,4 @@ pub mod updates;
 pub mod usernames;
 pub mod users;
 pub mod wallpapers;
+pub mod websocket;

@@ -10,6 +10,7 @@ core = { path = "../core" }
 futures = "0.3"
 tokio = { version = "1.23.0", features = ["full"] }
 axum = { version = "0.6.1", features = ["ws", "http2"] }
+ezsockets = { version = "0.5.1", features = ["axum"] }
 grammers-tl-gen = { git = "https://github.com/Toursslivers/grammers" }
 grammers-tl-types = { git = "https://github.com/Toursslivers/grammers" }
 grammers-mtproto = { git = "https://github.com/Toursslivers/grammers" }
