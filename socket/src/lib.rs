@@ -1,14 +1,14 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+mod socket;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub use socket::CloseCode;
+pub use socket::CloseFrame;
+pub use socket::Message;
+pub use socket::RawMessage;
+pub use socket::Sink;
+pub use socket::Socket;
+pub use socket::Stream;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub mod axum;
+
+pub type Error = Box<dyn std::error::Error + Send + Sync>;
+pub type Request = http::Request<()>;
