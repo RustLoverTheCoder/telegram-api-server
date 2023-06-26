@@ -26,3 +26,4 @@ tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
 entity = { path = "../entity" }
 migration = { path = "../migration" }
 async-trait = "0.1.68"
+socket = { path = '../socket' }

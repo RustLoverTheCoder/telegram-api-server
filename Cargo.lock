@@ -104,6 +104,7 @@ dependencies = [
  "migration",
  "serde",
  "serde_json",
+ "socket",
  "tera",
  "tokio",
  "tower",
