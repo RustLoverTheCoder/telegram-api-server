@@ -1,10 +1,12 @@
 pub mod extract;
 pub mod handler;
+pub mod models;
 
 use axum::{response::Html, routing::get, Router, Server};
 use core::sea_orm::Database;
-use handler::websocket::{websocket_handler, AppState};
+use handler::websocket::websocket_handler;
 use migration::{Migrator, MigratorTrait};
+use models::AppState;
 use std::str::FromStr;
 use std::{
     collections::HashSet,

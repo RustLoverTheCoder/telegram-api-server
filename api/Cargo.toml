@@ -9,7 +9,7 @@ edition = "2021"
 core = { path = "../core" }
 futures = "0.3"
 tokio = { version = "1.23.0", features = ["full"] }
-axum = { version = "0.6.1", features = ["ws", "http2"] }
+axum = { version = "0.6.18", features = ["ws", "http2"] }
 grammers-tl-gen = { git = "https://github.com/Toursslivers/grammers" }
 grammers-tl-types = { git = "https://github.com/Toursslivers/grammers" }
 grammers-mtproto = { git = "https://github.com/Toursslivers/grammers" }
@@ -27,3 +27,4 @@ entity = { path = "../entity" }
 migration = { path = "../migration" }
 async-trait = "0.1.68"
 ezsockets = { version = "0.5.1", features = ["axum"] }
+headers = "0.3.0"

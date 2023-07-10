@@ -6,20 +6,9 @@ use axum::{
     response::IntoResponse,
 };
 use futures::{sink::SinkExt, stream::StreamExt};
-use std::{
-    collections::HashSet,
-    sync::{Arc, Mutex},
-};
+use std::sync::Arc;
 
-use tokio::sync::broadcast;
-
-// Our shared state
-pub struct AppState {
-    // We require unique usernames. This tracks which usernames have been taken.
-    pub user_set: Mutex<HashSet<String>>,
-    // Channel used to send messages to all connected clients.
-    pub tx: broadcast::Sender<String>,
-}
+use crate::models::AppState;
 
 pub async fn websocket_handler(
     ws: WebSocketUpgrade,
