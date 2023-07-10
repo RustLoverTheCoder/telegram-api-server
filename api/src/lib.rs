@@ -5,7 +5,7 @@ pub mod models;
 use axum::extract::Query;
 use axum::response::IntoResponse;
 use axum::Extension;
-use axum::{response::Html, routing::get, Router};
+use axum::{routing::get, Router};
 use migration::{Migrator, MigratorTrait};
 use sockets::axum::Upgrade;
 use sqlx_core::sea_orm::Database;
