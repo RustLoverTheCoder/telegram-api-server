@@ -6,7 +6,6 @@ use axum::extract::Query;
 use axum::response::IntoResponse;
 use axum::Extension;
 use axum::{response::Html, routing::get, Router};
-// use handler::websocket::websocket_handler;
 use migration::{Migrator, MigratorTrait};
 use sockets::axum::Upgrade;
 use sqlx_core::sea_orm::Database;
@@ -110,64 +109,6 @@ impl sockets::SessionExt for ChatSession {
         Ok(())
     }
 }
-
-// #[tokio::main]
-// async fn start() -> anyhow::Result<()> {
-//     env::set_var("RUST_LOG", "debug");
-//     tracing_subscriber::fmt::init();
-
-//     dotenvy::dotenv().ok();
-//     let db_url = env::var("DATABASE_URL").expect("DATABASE_URL is not set in .env file");
-//     let host = env::var("HOST").expect("HOST is not set in .env file");
-//     let port = env::var("PORT").expect("PORT is not set in .env file");
-//     let server_url = format!("{host}:{port}");
-
-//     let conn = Database::connect(db_url)
-//         .await
-//         .expect("Database connection failed");
-//     Migrator::up(&conn, None).await.unwrap();
-
-//     let (server, _) = Server::create(|handle| ChatServer {
-//         sessions: HashMap::new(),
-//         handle,
-//     });
-
-//     let app = Router::new()
-//         .route("/", get(handler))
-//         .route("/apiws", get(websocket_handler));
-
-//     let address = SocketAddr::from_str(&server_url).unwrap();
-
-//     tokio::spawn(async move {
-//         tracing::debug!("listening on {}", address);
-//         axum::Server::bind(&address)
-//             .serve(app.into_make_service_with_connect_info::<SocketAddr>())
-//             .await
-//             .unwrap();
-//     });
-//     let stdin = std::io::stdin();
-//     let lines = stdin.lock().lines();
-//     for line in lines {
-//         let line = line.unwrap();
-//         server.call(ChatMessage::Send {
-//             text: line,
-//             from: SessionID::MAX, // reserve some ID for the server
-//         });
-//     }
-//     Ok(())
-// }
-
-// async fn handler() -> Html<&'static str> {
-//     Html(std::include_str!("../chat.html"))
-// }
-
-// pub fn main() {
-//     let result = start();
-
-//     if let Some(err) = result.err() {
-//         println!("Error: {err}");
-//     }
-// }
 
 #[tokio::main]
 pub async fn main() {
