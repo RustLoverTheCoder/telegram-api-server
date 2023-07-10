@@ -97,6 +97,7 @@ dependencies = [
  "core",
  "dotenvy",
  "entity",
+ "ezsockets",
  "futures",
  "grammers-mtproto",
  "grammers-tl-gen",
@@ -817,6 +818,24 @@ name = "event-listener"
 version = "2.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0206175f82b8d6bf6652ff7d71a1e27fd2e4efde587fd368662814d6ec1d9ce0"
+
+[[package]]
+name = "ezsockets"
+version = "0.5.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "68ede010e54c8c6887292598c25d0626d1d58a3ca53d05165242047c0a4300b5"
+dependencies = [
+ "async-trait",
+ "axum",
+ "base64 0.21.2",
+ "cfg-if",
+ "futures",
+ "http",
+ "tokio",
+ "tokio-tungstenite",
+ "tracing",
+ "url",
+]
 
 [[package]]
 name = "fastrand"
