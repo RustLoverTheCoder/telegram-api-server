@@ -11,7 +11,8 @@ members = [
     "api",
     "sqlx-core",
     "entity",
-    "migration"
+    "migration",
+    "sockets",
 ]
 
 [dependencies]

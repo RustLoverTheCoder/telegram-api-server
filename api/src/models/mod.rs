@@ -1,3 +1,5 @@
+pub mod chat;
+
 use std::{collections::HashSet, sync::Mutex};
 use tokio::sync::broadcast;
 

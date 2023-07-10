@@ -26,5 +26,6 @@ tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
 entity = { path = "../entity" }
 migration = { path = "../migration" }
 async-trait = "0.1.68"
-ezsockets = { version = "0.5.1", features = ["axum"] }
 headers = "0.3.0"
+http = "0.2.9"
+sockets = { path = "../sockets" }
