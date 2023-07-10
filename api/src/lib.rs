@@ -3,7 +3,7 @@ pub mod handler;
 pub mod models;
 
 use axum::{response::Html, routing::get, Router, Server};
-use core::sea_orm::Database;
+use sqlx_core::sea_orm::Database;
 use handler::websocket::websocket_handler;
 use migration::{Migrator, MigratorTrait};
 use models::AppState;

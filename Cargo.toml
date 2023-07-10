@@ -9,7 +9,7 @@ edition = "2021"
 members = [
     ".",
     "api",
-    "core",
+    "sqlx-core",
     "entity",
     "migration"
 ]
