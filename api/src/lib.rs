@@ -3,10 +3,8 @@ pub mod handler;
 
 use axum::{response::Html, routing::get, Router, Server};
 use core::sea_orm::Database;
-// use extract::chat;
 use handler::websocket::{websocket_handler, AppState};
 use migration::{Migrator, MigratorTrait};
-use socket::Server as SocketServer;
 use std::str::FromStr;
 use std::{
     collections::HashSet,
