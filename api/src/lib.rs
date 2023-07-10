@@ -136,7 +136,6 @@ pub async fn main() {
     });
 
     let app = Router::new()
-        .route("/", get(handler))
         .route("/apiws", get(websocket_handler))
         .layer(Extension(server.clone()));
 
@@ -159,10 +158,6 @@ pub async fn main() {
             from: SessionID::MAX, // reserve some ID for the server
         });
     }
-}
-
-async fn handler() -> Html<&'static str> {
-    Html(std::include_str!("../chat.html"))
 }
 
 async fn websocket_handler(
