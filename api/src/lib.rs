@@ -43,7 +43,8 @@ impl sockets::ServerExt for ChatServer {
         _address: SocketAddr,
     ) -> Result<Session, Error> {
         let id = (0..).find(|i| !self.sessions.contains_key(i)).unwrap_or(0);
-        let session = Session::create(
+        tracing::info!("new session: {id}");
+        let session: sockets::Session<u16, ()> = Session::create(
             |_| ChatSession {
                 id,
                 server: self.handle.clone(),
@@ -51,6 +52,7 @@ impl sockets::ServerExt for ChatServer {
             id,
             socket,
         );
+        tracing::info!("session created: {id}");
         self.sessions.insert(id, session.clone());
         Ok(session)
     }
@@ -59,6 +61,7 @@ impl sockets::ServerExt for ChatServer {
         &mut self,
         id: <Self::Session as sockets::SessionExt>::ID,
     ) -> Result<(), Error> {
+        tracing::info!("session disconnected: {id}");
         assert!(self.sessions.remove(&id).is_some());
         Ok(())
     }
@@ -100,7 +103,8 @@ impl sockets::SessionExt for ChatSession {
         Ok(())
     }
 
-    async fn on_binary(&mut self, _bytes: Vec<u8>) -> Result<(), Error> {
+    async fn on_binary(&mut self, bytes: Vec<u8>) -> Result<(), Error> {
+        tracing::info!("received bytes: {bytes:?}");
         unimplemented!()
     }
 
