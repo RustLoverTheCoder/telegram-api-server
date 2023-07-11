@@ -23,7 +23,7 @@ type Session = sockets::Session<SessionID, ()>;
 
 #[derive(Debug)]
 enum ChatMessage {
-    Send { from: SessionID, text: String },
+    Send { user_id: SessionID, text: String },
 }
 
 struct ChatServer {
@@ -68,9 +68,9 @@ impl sockets::ServerExt for ChatServer {
 
     async fn on_call(&mut self, call: Self::Call) -> Result<(), Error> {
         match call {
-            ChatMessage::Send { text, from } => {
-                let sessions = self.sessions.iter().filter(|(id, _)| from != **id);
-                let text = format!("from {from}: {text}");
+            ChatMessage::Send { text, user_id } => {
+                let sessions = self.sessions.iter().filter(|(id, _)| user_id != **id);
+                let text = format!("user_id {user_id}: {text}");
                 for (id, handle) in sessions {
                     tracing::info!("sending {text} to {id}");
                     handle.text(text.clone());
@@ -97,7 +97,7 @@ impl sockets::SessionExt for ChatSession {
     async fn on_text(&mut self, text: String) -> Result<(), Error> {
         tracing::info!("received: {text}");
         self.server.call(ChatMessage::Send {
-            from: self.id,
+            user_id: self.id,
             text,
         });
         Ok(())
@@ -155,7 +155,7 @@ pub async fn main() {
         let line = line.unwrap();
         server.call(ChatMessage::Send {
             text: line,
-            from: SessionID::MAX, // reserve some ID for the server
+            user_id: SessionID::MAX, // reserve some ID for the server
         });
     }
 }
