@@ -23,6 +23,7 @@ type Session = sockets::Session<SessionID, ()>;
 
 #[derive(Debug)]
 enum ChatMessage {
+    Ping { user_id: SessionID },
     Send { user_id: SessionID, text: String },
 }
 
@@ -68,10 +69,18 @@ impl sockets::ServerExt for ChatServer {
 
     async fn on_call(&mut self, call: Self::Call) -> Result<(), Error> {
         match call {
-            ChatMessage::Send { text, user_id } => {
-                let sessions = self.sessions.iter().filter(|(id, _)| user_id != **id);
-                let text = format!("user_id {user_id}: {text}");
+            ChatMessage::Ping { user_id } => {
+                let sessions = self.sessions.iter().filter(|(id, _)| user_id == **id);
+                let text = format!("pong");
                 for (id, handle) in sessions {
+                    tracing::info!("sending {text} to {id}");
+                    handle.text(text.clone());
+                }
+            }
+            ChatMessage::Send { text, user_id } => {
+                // let sessions = self.sessions.iter().filter(|(id, _)| user_id != **id);
+                let text = format!("user_id {user_id}: {text}");
+                for (id, handle) in &self.sessions {
                     tracing::info!("sending {text} to {id}");
                     handle.text(text.clone());
                 }
@@ -96,10 +105,16 @@ impl sockets::SessionExt for ChatSession {
     }
     async fn on_text(&mut self, text: String) -> Result<(), Error> {
         tracing::info!("received: {text}");
-        self.server.call(ChatMessage::Send {
-            user_id: self.id,
-            text,
-        });
+        // 如果text 包含ping
+        if text.to_string() == "ping" {
+            self.server.call(ChatMessage::Ping { user_id: self.id });
+        } else {
+            self.server.call(ChatMessage::Send {
+                user_id: self.id,
+                text,
+            });
+        }
+
         Ok(())
     }
 
