@@ -120,7 +120,7 @@ impl sockets::SessionExt for ChatSession {
 
     async fn on_binary(&mut self, bytes: Vec<u8>) -> Result<(), Error> {
         tracing::info!("received bytes: {bytes:?}");
-        unimplemented!()
+        Ok(())
     }
 
     async fn on_call(&mut self, call: Self::Call) -> Result<(), Error> {
