@@ -118,6 +118,8 @@ dependencies = [
  "dotenvy",
  "entity",
  "futures",
+ "grammers-client",
+ "grammers-crypto",
  "grammers-mtproto",
  "grammers-tl-gen",
  "grammers-tl-types",
@@ -128,6 +130,7 @@ dependencies = [
  "serde_json",
  "sockets",
  "sqlx-core 0.1.0",
+ "telegram-crypto",
  "tera",
  "tokio",
  "tower",
@@ -591,8 +594,11 @@ checksum = "ec837a71355b28f6556dbd569b37b3f363091c0bd4b2e735674521b4c5fd9bc5"
 dependencies = [
  "android-tzdata",
  "iana-time-zone",
+ "js-sys",
  "num-traits",
  "serde",
+ "time 0.1.45",
+ "wasm-bindgen",
  "winapi",
 ]
 
@@ -679,7 +685,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7efb37c3e1ccb1ff97164ad95ac1606e8ccd35b3fa0a7d99a304c7f4a428cc24"
 dependencies = [
  "percent-encoding",
- "time",
+ "time 0.3.23",
  "version_check",
 ]
 
@@ -1048,7 +1054,7 @@ checksum = "be4136b2a15dd319360be1c07d9933517ccf0be8f16bf62a3bee4f0d618df427"
 dependencies = [
  "cfg-if",
  "libc",
- "wasi",
+ "wasi 0.11.0+wasi-snapshot-preview1",
 ]
 
 [[package]]
@@ -1108,9 +1114,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "grammers-client"
+version = "0.4.0"
+source = "git+https://github.com/Toursslivers/grammers#8169db7f1fe86896ca4f591f6d424be3cb4f192a"
+dependencies = [
+ "chrono",
+ "futures-util",
+ "grammers-crypto",
+ "grammers-mtproto",
+ "grammers-mtsender",
+ "grammers-session",
+ "grammers-tl-types",
+ "locate-locale",
+ "log",
+ "md5",
+ "mime_guess",
+ "os_info",
+ "pin-project-lite",
+ "tokio",
+]
+
+[[package]]
 name = "grammers-crypto"
 version = "0.4.0"
-source = "git+https://github.com/Toursslivers/grammers#d91dc82f744b04fe846948467eff17852a15762e"
+source = "git+https://github.com/Toursslivers/grammers#8169db7f1fe86896ca4f591f6d424be3cb4f192a"
 dependencies = [
  "aes",
  "getrandom",
@@ -1125,7 +1152,7 @@ dependencies = [
 [[package]]
 name = "grammers-mtproto"
 version = "0.4.0"
-source = "git+https://github.com/Toursslivers/grammers#d91dc82f744b04fe846948467eff17852a15762e"
+source = "git+https://github.com/Toursslivers/grammers#8169db7f1fe86896ca4f591f6d424be3cb4f192a"
 dependencies = [
  "bytes",
  "crc32fast",
@@ -1139,9 +1166,33 @@ dependencies = [
 ]
 
 [[package]]
+name = "grammers-mtsender"
+version = "0.4.0"
+source = "git+https://github.com/Toursslivers/grammers#8169db7f1fe86896ca4f591f6d424be3cb4f192a"
+dependencies = [
+ "bytes",
+ "futures-util",
+ "grammers-mtproto",
+ "grammers-tl-types",
+ "log",
+ "tokio",
+]
+
+[[package]]
+name = "grammers-session"
+version = "0.4.1"
+source = "git+https://github.com/Toursslivers/grammers#8169db7f1fe86896ca4f591f6d424be3cb4f192a"
+dependencies = [
+ "grammers-tl-gen",
+ "grammers-tl-parser",
+ "grammers-tl-types",
+ "log",
+]
+
+[[package]]
 name = "grammers-tl-gen"
 version = "0.4.1"
-source = "git+https://github.com/Toursslivers/grammers#d91dc82f744b04fe846948467eff17852a15762e"
+source = "git+https://github.com/Toursslivers/grammers#8169db7f1fe86896ca4f591f6d424be3cb4f192a"
 dependencies = [
  "grammers-tl-parser",
 ]
@@ -1149,7 +1200,7 @@ dependencies = [
 [[package]]
 name = "grammers-tl-parser"
 version = "1.1.0"
-source = "git+https://github.com/Toursslivers/grammers#d91dc82f744b04fe846948467eff17852a15762e"
+source = "git+https://github.com/Toursslivers/grammers#8169db7f1fe86896ca4f591f6d424be3cb4f192a"
 dependencies = [
  "crc32fast",
 ]
@@ -1157,7 +1208,7 @@ dependencies = [
 [[package]]
 name = "grammers-tl-types"
 version = "0.4.0"
-source = "git+https://github.com/Toursslivers/grammers#d91dc82f744b04fe846948467eff17852a15762e"
+source = "git+https://github.com/Toursslivers/grammers#8169db7f1fe86896ca4f591f6d424be3cb4f192a"
 dependencies = [
  "grammers-tl-gen",
  "grammers-tl-parser",
@@ -1504,6 +1555,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ef53942eb7bf7ff43a617b3e2c1c4a5ecf5944a7c1bc12d7ee39bbb15e5c1519"
 
 [[package]]
+name = "locate-locale"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2835eaaed39a92511442aff277d4dca3d7674ca058df3bc45170661c2ccb4619"
+dependencies = [
+ "winapi",
+]
+
+[[package]]
 name = "lock_api"
 version = "0.4.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1545,6 +1605,12 @@ checksum = "6365506850d44bff6e2fbcb5176cf63650e48bd45ef2fe2665ae1570e0f4b9ca"
 dependencies = [
  "digest 0.10.7",
 ]
+
+[[package]]
+name = "md5"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "490cc448043f947bae3cbee9c203358d62dbee0db12107a74be5c30ccfd09771"
 
 [[package]]
 name = "memchr"
@@ -1598,7 +1664,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "927a765cd3fc26206e66b296465fa9d3e5ab003e651c1b3c060e7956d96b19d2"
 dependencies = [
  "libc",
- "wasi",
+ "wasi 0.11.0+wasi-snapshot-preview1",
  "windows-sys",
 ]
 
@@ -1744,6 +1810,16 @@ dependencies = [
  "libc",
  "pkg-config",
  "vcpkg",
+]
+
+[[package]]
+name = "os_info"
+version = "3.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "006e42d5b888366f1880eda20371fedde764ed2213dc8496f49622fa0c99cd5e"
+dependencies = [
+ "log",
+ "winapi",
 ]
 
 [[package]]
@@ -2404,7 +2480,7 @@ dependencies = [
  "serde_json",
  "sqlx",
  "thiserror",
- "time",
+ "time 0.3.23",
  "tracing",
  "url",
  "uuid",
@@ -2467,7 +2543,7 @@ dependencies = [
  "rust_decimal",
  "sea-query-derive",
  "serde_json",
- "time",
+ "time 0.3.23",
  "uuid",
 ]
 
@@ -2483,7 +2559,7 @@ dependencies = [
  "sea-query",
  "serde_json",
  "sqlx",
- "time",
+ "time 0.3.23",
  "uuid",
 ]
 
@@ -2845,7 +2921,7 @@ dependencies = [
  "sqlx-rt",
  "stringprep",
  "thiserror",
- "time",
+ "time 0.3.23",
  "tokio-stream",
  "url",
  "uuid",
@@ -2941,6 +3017,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "telegram-crypto"
+version = "0.1.0"
+
+[[package]]
 name = "tempfile"
 version = "3.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3010,6 +3090,17 @@ checksum = "3fdd6f064ccff2d6567adcb3873ca630700f00b5ad3f060c25b5dcfd9a4ce152"
 dependencies = [
  "cfg-if",
  "once_cell",
+]
+
+[[package]]
+name = "time"
+version = "0.1.45"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1b797afad3f312d1c66a56d11d0316f916356d11bd158fbc6ca6389ff6bf805a"
+dependencies = [
+ "libc",
+ "wasi 0.10.0+wasi-snapshot-preview1",
+ "winapi",
 ]
 
 [[package]]
@@ -3544,6 +3635,12 @@ checksum = "bfa7760aed19e106de2c7c0b581b509f2f25d3dacaf737cb82ac61bc6d760b0e"
 dependencies = [
  "try-lock",
 ]
+
+[[package]]
+name = "wasi"
+version = "0.10.0+wasi-snapshot-preview1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a143597ca7c7793eff794def352d41792a93c481eb1042423ff7ff72ba2c31f"
 
 [[package]]
 name = "wasi"

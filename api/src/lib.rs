@@ -1,4 +1,6 @@
+pub mod error;
 pub mod extract;
+pub mod gateway;
 pub mod handler;
 pub mod models;
 
