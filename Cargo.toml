@@ -13,7 +13,8 @@ members = [
     "entity",
     "migration",
     "sockets",
-    "telegram-crypto"
+    "crypto",
+    "mtproto"
 ]
 
 [dependencies]
