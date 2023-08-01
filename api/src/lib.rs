@@ -10,7 +10,7 @@ use axum::Extension;
 use axum::{routing::get, Router};
 use migration::{Migrator, MigratorTrait};
 use sockets::axum::Upgrade;
-use sqlx_core::sea_orm::Database;
+use db::sea_orm::Database;
 use std::io::BufRead;
 use std::str::FromStr;
 use std::{env, net::SocketAddr};

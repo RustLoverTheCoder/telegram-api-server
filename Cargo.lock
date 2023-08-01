@@ -107,6 +107,7 @@ dependencies = [
  "async-trait",
  "axum",
  "crypto",
+ "db",
  "dotenvy",
  "entity",
  "futures",
@@ -121,7 +122,6 @@ dependencies = [
  "serde",
  "serde_json",
  "sockets",
- "sqlx-core 0.1.0",
  "tera",
  "tokio",
  "tower",
@@ -771,6 +771,15 @@ name = "data-encoding"
 version = "2.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2e66c9d817f1720209181c316d28635c050fa304f9c79e47a520882661b7308"
+
+[[package]]
+name = "db"
+version = "0.1.0"
+dependencies = [
+ "entity",
+ "sea-orm",
+ "tokio",
+]
 
 [[package]]
 name = "deunicode"
@@ -2857,17 +2866,8 @@ version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f8de3b03a925878ed54a954f621e64bf55a3c1bd29652d0d1a17830405350188"
 dependencies = [
- "sqlx-core 0.6.3",
+ "sqlx-core",
  "sqlx-macros",
-]
-
-[[package]]
-name = "sqlx-core"
-version = "0.1.0"
-dependencies = [
- "entity",
- "sea-orm",
- "tokio",
 ]
 
 [[package]]
@@ -2941,7 +2941,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "serde_json",
- "sqlx-core 0.6.3",
+ "sqlx-core",
  "sqlx-rt",
  "syn 1.0.109",
  "url",
